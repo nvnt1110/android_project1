@@ -24,4 +24,12 @@
     <string name="btn_set_pallet_id">Set Pallet ID by Keypad</string>
     <string name="btn_menu">MENU</string>
     <string name="btn_next">Next (Scan Box ID)</string>
+
+    <!--dialog scan wave strength-->
+    <string name="txt_scan_area">Scan Area</string>
+    <string name="txt_min">Narrow</string>
+    <string name="txt_max">Wide</string>
+    <string name="btn_back">Back w/o Set</string>
+    <string name="btn_set">Set</string>
+    <string name="txt_title_set_wave_strength">Set Radio Wave Strength</string>
 </resources>
