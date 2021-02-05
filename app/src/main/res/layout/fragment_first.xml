@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FirstFragment"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <Button
+        android:id="@+id/btnStartScan"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/start_scan"
+        />
+    <Button
+        android:id="@+id/btnHistory"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/history"
+        android:layout_marginBottom="@dimen/margin_100dp"
+        />
+    <Button
+        android:id="@+id/btnTestRFID"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/test_rfid"
+        />
+    <Button
+        android:id="@+id/btnImportBoxTypeName"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/import_box_type_name"
+
+        />
+    <Button
+        android:id="@+id/btnExit"
+        android:layout_width="@dimen/width_300dp"
+        android:layout_height="wrap_content"
+        android:text="@string/exit"
+        />
+</LinearLayout>

@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <!--Main Menu-->
+    <string name="start_scan">Start Scan</string>
+    <string name="history">History</string>
+    <string name="test_rfid">Test RFID</string>
+    <string name="import_box_type_name">Import Box Type Name</string>
+    <string name="exit">Exit</string>
+    
+    <!--fragment second-->
+    <string name="pallet_id">Pallet ID</string>
+    <string name="btn_rescan">Re-scan Pallet ID</string>
+    <string name="btn_set_wave">Set R-Wave Strength</string>
+    <string name="btn_set_pallet_id">Set Pallet ID by Keypad</string>
+    <string name="btn_menu">MENU</string>
+    <string name="btn_next">Next (Scan Box ID)</string>
+</resources>
