@@ -4,20 +4,19 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
+    <string name="three_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 
-    <!--Main Menu-->
     <string name="start_scan">Start Scan</string>
     <string name="history">History</string>
     <string name="test_rfid">Test RFID</string>
     <string name="import_box_type_name">Import Box Type Name</string>
     <string name="exit">Exit</string>
-    
-    <!--fragment second-->
+
     <string name="pallet_id">Pallet ID</string>
     <string name="btn_rescan">Re-scan Pallet ID</string>
     <string name="btn_set_wave">Set R-Wave Strength</string>
@@ -25,11 +24,13 @@
     <string name="btn_menu">MENU</string>
     <string name="btn_next">Next (Scan Box ID)</string>
 
-    <!--dialog scan wave strength-->
     <string name="txt_scan_area">Scan Area</string>
     <string name="txt_min">Narrow</string>
     <string name="txt_max">Wide</string>
     <string name="btn_back">Back w/o Set</string>
     <string name="btn_set">Set</string>
     <string name="txt_title_set_wave_strength">Set Radio Wave Strength</string>
+
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_enter">Enter</string>
 </resources>

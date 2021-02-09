@@ -1,33 +1,34 @@
-package com.example.myapplication;
+package com.example.myapplication.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
+import com.example.myapplication.R;
 import com.google.android.material.slider.Slider;
 
 public class SecondFragment extends Fragment implements View.OnClickListener {
-    Button mBtnBack, mBtnSet, mBtnMenu, mBtnSetWave;
+    private static final String TAG = "MyActivity";
+    private static final String PALLET_ID = "Pallet ID";
+    private static final String SLIDER_VALUE = "Slider value";
+    Button mBtnBack, mBtnSet, mBtnMenu, mBtnSetWave, mBtnSetPalletID;
     View customLayout;
     AlertDialog mDialog;
-    Slider slider;
+    Slider mSlider;
+    EditText mEdtPalletID;
+    SharedPreferences prefs;
 
     @Override
     public View onCreateView(
@@ -40,23 +41,39 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
 
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         onInitLayout(view);
+        onInitData();
     }
 
+    @SuppressLint("InflateParams")
     public void onInitLayout(View view) {
         customLayout = getLayoutInflater().inflate(R.layout.dialog_set_wave_strength, null, false);
-        slider = customLayout.findViewById(R.id.slider);
+        mSlider = customLayout.findViewById(R.id.slider);
         mBtnBack = customLayout.findViewById(R.id.btnBack);
         mBtnSet = customLayout.findViewById(R.id.btnSet);
         mBtnMenu = view.findViewById(R.id.btnMenu);
         mBtnSetWave = view.findViewById(R.id.btnSetRWave);
+        mBtnSetPalletID = view.findViewById(R.id.btnSetPalletID);
+        mEdtPalletID = view.findViewById(R.id.etPalletID);
         mBtnBack.setOnClickListener(this);
         mBtnSet.setOnClickListener(this);
         mBtnMenu.setOnClickListener(this);
         mBtnSetWave.setOnClickListener(this);
+        mBtnSetPalletID.setOnClickListener(this);
+    }
+
+    public void onInitData() {
+        float sliderValue = prefs.getFloat(SLIDER_VALUE, 0);
+        mSlider.setValue(sliderValue);
+        String storePalletID = prefs.getString(PALLET_ID, null);
+        mEdtPalletID.setText(storePalletID);
     }
 
     public void onShowDialog(View customLayout) {
+        if (customLayout.getParent() != null) {
+            ((ViewGroup) customLayout.getParent()).removeView(customLayout); // <- fix error crash app when click btnSetWave second
+        }
         AlertDialog.Builder mAlertBuilder = new AlertDialog.Builder(getContext());
         mAlertBuilder.setTitle(R.string.txt_title_set_wave_strength);
         mAlertBuilder.setView(customLayout);
@@ -65,10 +82,9 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onSetValue() {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
         SharedPreferences.Editor editor = prefs.edit();
-        float valueSlider = slider.getValue();
-        editor.putFloat("valueSlider", valueSlider);
+        float valueSlider = mSlider.getValue();
+        editor.putFloat(SLIDER_VALUE, valueSlider);
         editor.apply();
     }
 
@@ -85,10 +101,21 @@ public class SecondFragment extends Fragment implements View.OnClickListener {
             case R.id.btnSetRWave:
                 onShowDialog(customLayout);
                 break;
+            case R.id.btnSetPalletID:
+                NavHostFragment.findNavController(SecondFragment.this)
+                        .navigate(R.id.action_SecondFragment_to_ThreeFragment);
+                break;
             case R.id.btnMenu:
                 NavHostFragment.findNavController(SecondFragment.this)
                         .navigate(R.id.action_SecondFragment_to_FirstFragment);
                 break;
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.e(TAG, "save");
+        prefs.edit().putString(PALLET_ID, mEdtPalletID.getText().toString()).commit();
     }
 }
